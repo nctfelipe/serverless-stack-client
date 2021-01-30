@@ -1,4 +1,6 @@
 const config = {
+    MAX_ATTACHMENT_SIZE: 5000000,
+    STRIPE_KEY: "YOUR_STRIPE_PUBLIC_KEY",
     s3: {
         REGION: "",
         BUCKET: "",
