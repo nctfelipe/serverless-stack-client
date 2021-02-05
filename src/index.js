@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { Amplify } from 'aws-amplify';
-import config from './config';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
@@ -19,22 +18,22 @@ ReactDOM.render(
 Amplify.configure({
     Auth: {
         mandatorySignIn: true,
-        region: config.cognito.REGION,
-        userPoolId: config.cognito.USER_POOL_ID,
-        identityPoolId: config.cognito.IDENTITY_POOL_ID,
-        userPoolWebClientId: config.cognito.APP_CLIENT_ID
+        region: process.env.REACT_APP_COGNITO_REGION,
+        userPoolId: process.env.REACT_APP_COGNITO_USER_POOL_ID,
+        identityPoolId: process.env.REACT_APP_COGNITO_IDENTITY_POOL_ID,
+        userPoolWebClientId: process.env.REACT_APP_COGNITO_APP_CLIENT_ID
     },
     Storage: {
-        region: config.s3.REGION,
-        bucket: config.s3.BUCKET,
-        identityPoolId: config.cognito.IDENTITY_POOL_ID
+        region: process.env.REACT_APP_S3_REGION,
+        bucket: process.env.REACT_APP_S3_BUCKET,
+        identityPoolId: process.env.REACT_APP_COGNITO_IDENTITY_POOL_ID
     },
     API: {
         endpoints: [
             {
                 name: "notes",
-                endpoint: config.apiGateway.URL,
-                region: config.apiGateway.REGION
+                endpoint: process.env.REACT_APP_APIGATEWAY_URL,
+                region: process.env.REACT_APP_COGNITO_REGION
             },
         ]
     }

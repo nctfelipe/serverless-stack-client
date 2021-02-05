@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { API } from "aws-amplify";
 import { useHistory } from "react-router-dom";
 import { onError } from "../libs/errorLib";
-import config from "../config";
 import { Elements, StripeProvider } from "react-stripe-elements";
 import BillingForm from "../components/BillingForm";
 import "./Settings.css";
@@ -20,7 +19,7 @@ export default function Settings() {
     const [stripe, setStripe] = useState(null);
 
     useEffect(() => {
-        setStripe(window.Stripe(config.STRIPE_KEY));
+        setStripe(window.Stripe(process.env.REACT_APP_STRIPE_KEY));
     }, []);
 
     async function handleFormSubmit(storage, { token, error }) {
